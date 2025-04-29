@@ -2,46 +2,43 @@ import java.util.Scanner;
 
 public class ConsumoAirFryer {
 
-    static int dias = 365;
-    static float hora = 60, valorDiario, kwDia, valorMensal;
+    //No global variables were used in the code.
 
     public static void main(String[] args) {
-        System.out.println("Olá, vamos calcular o quanto você gasta com a sua AirFryer!");
+        System.out.println("\nLet's calculate your monthly Air Fryer spending.");
 
         Scanner entrada = new Scanner(System.in);
 
-        System.out.println("Agora digite quantas vezes você utiliza suas Air Fryer por dia:");
-        String usoDiario = entrada.nextLine();
-        float tempoDiario = Float.parseFloat(usoDiario);
+        System.out.println("\nHow many times do you use your Air Fryer per day?");
+        String dailyUses = entrada.nextLine();
+        float dailyTime = Float.parseFloat(dailyUses);
 
-        System.out.println("Agora digite em minutos quanto tempo em média sua Air Fryer fica funcionado toda vez que você utiliza ela:");
-        String usoMinutos = entrada.nextLine();
-        float totalMinutos = Integer.parseInt(usoMinutos);
-        float horaDividida = totalMinutos / hora;
+        System.out.println("\nWhat is your average usage, in minutes?");
+        String usageMinutes = entrada.nextLine();
+        float totalMinutes = Float.parseFloat(usageMinutes);
+        float splitTime = totalMinutes / 60;
 
-        //O código abaixo recebe somente valores convertidos, por exemplo:
-        //NÃO RECEBE 1500Wh
-        //RECEBE 1,5kWh
-        System.out.println("Digite a potência da sua Air Fryer:");
-        String potenciaAirFryer = entrada.nextLine();
-        potenciaAirFryer = potenciaAirFryer.replace(",", ".");
-        float potenciaAir = Float.parseFloat(potenciaAirFryer);
+        //The code below only receives converted values, for example:
+        //DOES NOT RECEIVE 1500Wh
+        //RECEIVES 1.5kWh
 
-        float kwDia = horaDividida * potenciaAir;
-        System.out.println("O valor total do kW por dia é:" + kwDia);
+        System.out.println("\nWhat is the power of the Air Fryer?");
+        String power = entrada.nextLine();
+        power = power.replace(",", ".");
+        float force = Float.parseFloat(power);
+        float kwDay = splitTime * force;
 
-        System.out.println("Digite a tarifa do seu kWh:");
-        String tarifaKw = entrada.nextLine();
-        tarifaKw = tarifaKw.replace(",", ".");
+        System.out.println("\nWhat is your kWh rate??");
+        String kwFare = entrada.nextLine();
+        kwFare = kwFare.replace(",", ".");
 
-        float tarifaLuz = Float.parseFloat(tarifaKw);
-        float custoDiario = kwDia * tarifaLuz;
-        System.out.println(custoDiario);
+        float electricity = Float.parseFloat(kwFare);
+        float dailyCost = kwDay * electricity;
 
-        valorDiario = custoDiario * tempoDiario;
-        valorMensal = valorDiario * 30;
+        float dailyPrice = dailyCost * dailyTime;
+        float monthlyPrice = dailyPrice * 30;
 
-        System.out.println("Seu gasto mensal é de R$" + valorMensal);
+        System.out.println("\nYour monthly expense is R$" + monthlyPrice);
 
         entrada.close();
 
